@@ -1,5 +1,26 @@
 //Tasc_1
+/*const personJohn = {
+  name: "John",
+  sayHello: function() {
+    console.log(`Hello, I'm ${this.name}`);
+  }
+}
 
+const sysAdmin = {
+  name: "Bob",
+  __proto__:personJohn
+}
+
+const clientNatalia = {
+  name: "Natalia",
+  __proto__:personJohn
+}
+
+
+console.log(clientNatalia.sayHello());
+console.log(sysAdmin.sayHello());*/
+
+//Tasc_2
 
 function Person(name) {
   this.name = name;
@@ -10,23 +31,22 @@ function Person(name) {
 
 function Employee(name) {
  this.name = name;
- __proto__ = Person.prototype.sayHello;
 }
+Employee.prototype = new Person();
 
 function Client(name) {
   this.name = name;
-  __proto__ = Employee.prototype.sayHello;
 }
-//Задача2 : исправьте код, 
-//чтобы Employee и Client унаследовали sayHello от Person
+Client.prototype = new Person();
+
 
 const personJohn = new Person("John");
 const sysAdmin = new Employee("Bob");
 const clientNatalia = new Client("Natalia");
 
-console.log(personJohn);
-console.log(sysAdmin);
-console.log(clientNatalia);
+console.log(personJohn.sayHello());
+console.log(sysAdmin.sayHello());
+console.log(clientNatalia.sayHello());
 
 
 /*Задача3: Написать функцию конструктор Student, 
@@ -60,3 +80,7 @@ const students = [
  console.log(students);
  console.log(students[0].averageMark());
  console.log(students[1].averageMark());
+
+
+
+ 
