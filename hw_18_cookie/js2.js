@@ -12,9 +12,8 @@ function addCookies() {
   let valueUser = document.querySelector('.userName').value;
   if (valueUser) {
     document.cookie = 'name=' + valueUser;
-    document.querySelector('.userName').value = '';
     document.querySelector('.username_form').className = 'hidden';
-    document.querySelector('.welcome').textContent = 'Welcome,' + valueUser + '!';
+    document.querySelector('.welcome').textContent = 'Welcome, ' + valueUser + '!';
   }
   else{
     alert('Input Username!');
@@ -22,14 +21,14 @@ function addCookies() {
 }
 
 let btn = document.querySelector('button');
-btn.addEventListener('click', addCookies());
+btn.addEventListener('click', addCookies);
 
 window.onload = function () {
   let cookies = document.cookie;
   if (cookies.includes('name')) {
     let cookiesObj = getCookies(cookies);
     console.log(cookiesObj);
-    let valueUser = cookiesObj[1];
+    let valueUser = cookiesObj.name;
     document.querySelector('.welcome').textContent = 'Welcome, ' + valueUser + '!';
     document.querySelector('.username_form').className = 'hidden';
   } else {
