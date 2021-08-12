@@ -27,7 +27,7 @@ window.onload = function() {
     document.querySelector('.username_form').className = 'hidden';
   } else {
     let btn = document.querySelector('button');
-    btn.addEventListener('click', addCookies)
+    btn.addEventListener('click', addCookies())
   }
 }
 
