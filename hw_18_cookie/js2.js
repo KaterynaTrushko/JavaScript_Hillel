@@ -20,7 +20,7 @@ function addCookies() {
   }
 }
 
-let btn = document.querySelector('button');
+const btn = document.querySelector('button');
 btn.addEventListener('click', addCookies);
 
 window.onload = function () {
@@ -32,7 +32,6 @@ window.onload = function () {
     document.querySelector('.welcome').textContent = 'Welcome, ' + valueUser + '!';
     document.querySelector('.username_form').className = 'hidden';
   } else {
-    let btn = document.querySelector('button');
     btn.addEventListener('click', addCookies());
   }
 }
