@@ -1,24 +1,58 @@
-
+* {
+  background-color: rgb(170, 250, 223);
+}
 
 input {
+  display: block;
   height: 40px;
   width: 200px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 50px ;
-  display: block;
+  margin-top: 20px ;
+  border-radius: 20px;
+  border-color: #d87d;
+  border-style: solid;
 }
+
+input,  textarea {
+  display: block;
+  text-align: center;
+  padding: 0 20px;
+  margin-bottom: 10px;
+  background: #E9EFF6;
+  line-height: 40px;
+}
+
+
 
 button {
   display:block;
   height: 40px;
   width: 100px;
-  margin-top: 15px;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 30px;
+  background: #f69a73;
+  border-bottom: 4px solid #d87d56;
+  color: white;
+  font-size: 14px;
+  line-height: 40px;
+  border-width: 0;
+  border-radius: 15px;
 }
 
 
 .hidden {
   display: none;
+}
+
+.username_form{
+  margin-top: 50px;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  background: #E9EFF6;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20px;
 }
