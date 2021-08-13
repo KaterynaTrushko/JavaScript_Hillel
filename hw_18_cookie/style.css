@@ -56,3 +56,11 @@ button {
   margin-right: auto;
   border-radius: 20px;
 }
+
+.welcome {
+  font-family: 'Style Script', cursive;
+  padding-top: 50px;
+  text-align: center;
+  font-size: 50px;
+  color:#f69a73;
+}
