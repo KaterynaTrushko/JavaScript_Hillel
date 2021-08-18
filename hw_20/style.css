@@ -1,0 +1,70 @@
+main {
+  display: flex;
+}
+.container{
+  margin-left: 20px;
+  
+}
+main>* {
+  border: 1px solid;
+}
+
+table {
+  text-align:center;
+  margin-top: 30px;
+  border-collapse: collapse;
+  
+}
+
+td,
+th {
+  border: 1px solid;
+  padding: 10px;
+  min-width: 200px;
+  background: white;
+  box-sizing: border-box;
+ }
+
+
+thead th {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: hsl(20, 50%, 70%);
+}
+
+thead th:first-child {
+  left: 0;
+  z-index: 3;
+}
+
+tfoot {
+  position: -webkit-sticky;
+  bottom: 0;
+  z-index: 2;
+}
+
+tfoot td {
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+  background: hsl(20, 50%, 70%);
+}
+
+tfoot td:first-child {
+  z-index: 3;
+}
+
+tbody {
+  overflow: scroll;
+  height: 50px;
+}
+
+tr> :first-child {
+  position: -webkit-sticky;
+  position: sticky;
+  background: hsl(180, 50%, 70%);
+  left: 0;
+}
+
