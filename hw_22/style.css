@@ -1,0 +1,61 @@
+body {
+  background-image: url('http://wallpapers-image.ru/1920x1080/nature/wallpapers/nature-wallpapers-1920x1080-00016.jpg');
+}
+
+input {
+  width: 500px;
+  height: 70px;
+  border: 1px solid #3a9cb8;
+  border-radius: 10px 0 0 10px;
+  font: 400 18px tahoma;
+  border: 1px solid #00C6FF;
+  outline:none;
+}
+
+input[placeholder] {
+  color: blue;
+  font-size: 2em;
+  padding-left: 20px;
+}
+
+
+.but {
+  height: 75px;
+  color: #4e5a5e;
+  padding: 10px 20px;
+  width: 90px;
+  border-radius: 0 10px 10px 0;
+  text-decoration: none;
+  text-align: center;
+  font-size: 1.5em;
+  border: 1px solid #2bc0e9;
+  cursor: pointer;
+}
+.but:hover {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}
+
+.weather {
+  margin-top: 200px;
+display: flex;
+justify-content: center;
+}
+
+.city {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+ }
+
+span {
+  display: inline-block;
+  font-size: 70px;
+  color: aliceblue;
+  font-weight: bold;
+  text-align: center;
+}
+.degry{
+  margin-left: 20px;
+}
+
+
