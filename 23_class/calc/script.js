@@ -1,144 +1,124 @@
-/*
-TODO:
-    Limit number input
-    Disallow . from being entered multiple times
-    Clean up structure
-*/
-
-class Calc {
-  "use strict";
-
-  // Shortcut to get elements
-  static el = function (element) {
+class Calculator {
+  #theNum;
+  #oldNum;
+  static el(element) {
     if (element.charAt(0) === "#") { // If passed an ID...
       return document.querySelector(element); // ... returns single element
     }
 
-    return document.querySelectorAll(element); // Otherwise, returns a nodelist
+    return document.querySelectorAll(element);
   }
 
   constructor() {
-    this.viewer = element.el("#viewer"), // Calculator screen where result is displayed
-      this.equals = element.el("#equals"), // Equal button
-      this.nums = element.el(".num"), // List of numbers
-      this.ops = element.el(".ops"), // List of operators
-      this.theNum = "", // Current number
-      this.oldNum = "", // First number
-      this.resultNum, // Result
-      this.operator; // Batman
 
-
-      for (let i = 0, l = nums.length; i < l; i++) {
-        nums[i].onclick = setNum;
-      }
-  
-      // Add click event to operators
-      for (var i = 0, l = ops.length; i < l; i++) {
-        ops[i].onclick = moveNum;
-      }
-  
-      // Add click event to equal sign
-      equals.onclick = displayNum;
-  
-      // Add click event to clear button
-      el("#clear").onclick = clearAll;
-  
-      // Add click event to reset button
-      el("#reset").onclick = function () {
-        window.location = window.location;
-      }
-
-  }
-
-
-
-  // When: Number is clicked. Get the current number selected
-  setNum = function () {
-    if (this.resultNum) { // If a result was displayed, reset number
-      this.theNum = this.getAttribute("data-num");
-      this.resultNum = "";
-    } else { // Otherwise, add digit to previous number (this is a string!)
-      this.theNum += this.getAttribute("data-num");
+    this.viewer = Calculator.el("#viewer"); // Calculator screen where result is displayed
+    this.equals = Calculator.el("#equals"); // Equal button
+    this.nums = Calculator.el(".num"); // List of numbers
+    this.ops = Calculator.el(".ops"); // List of this.operators
+    this.#theNum = ""; // Current number
+    this.#oldNum = ""; // First number
+    this.resultNum; // Result
+    this.operator; // Batman
+    ; // Add click event to numbers
+    for (let i = 0, l = this.nums.length; i < l; i++) {
+      this.nums[i].onclick = this.setNum.bind(this);
     }
 
-    viewer.innerHTML = this.theNum; // Display current number
+    // Add click event to this.operators
+    for (let i = 0, l = this.ops.length; i < l; i++) {
+      this.ops[i].onclick = this.moveNum.bind(this);
+    }
+
+    // Add click event to equal sign
+    this.equals.onclick = this.displayNum.bind(this);
+
+    // Add click event to clear button
+    Calculator.el("#clear").onclick = this.clearAll.bind(this);
+
+    // Add click event to reset button
+    Calculator.el("#reset").onclick = function () {
+      window.location = window.location;
+    };
+  }
+
+
+  setNum(e) {
+    if (this.resultNum) { // If a result was displayed, reset number
+      this.#theNum = e.target.getAttribute("data-num");
+      this.resultNum = "";
+    } else { // Otherwise, add digit to previous number (this is a string!)
+      this.#theNum += e.target.getAttribute("data-num");
+    }
+
+    this.viewer.innerHTML = this.#theNum; // Display current number
 
   }
 
-  // When: Operator is clicked. Pass number to oldNum and save operator
-  moveNum = function () {
-    this.oldNum = theNum;
-    this.theNum = "";
-    this.operator = this.getAttribute("data-ops");
+  moveNum(e) {
+    this.#oldNum = this.#theNum;
+    this.#theNum = "";
+    this.operator = e.target.getAttribute("data-ops");
 
     equals.setAttribute("data-result", ""); // Reset result in attr
+  }
+
+  clearAll() {
+    this.#oldNum = "";
+    this.#theNum = "";
+    this.viewer.innerHTML = "0";
+    this.equals.setAttribute("data-result", this.resultNum);
   };
 
-  // When: Equals is clicked. Calculate result
-  displayNum = function () {
+  displayNum() {
 
     // Convert string input to numbers
-    oldNum = parseFloat(oldNum);
-    theNum = parseFloat(theNum);
+    this.#oldNum = parseFloat(this.#oldNum);
+    this.#theNum = parseFloat(this.#theNum);
 
     // Perform operation
-    switch (operator) {
+    switch (this.operator) {
       case "plus":
-        resultNum = oldNum + theNum;
+        this.resultNum = this.#oldNum + this.#theNum;
         break;
 
       case "minus":
-        resultNum = oldNum - theNum;
+        this.resultNum = this.#oldNum - this.#theNum;
         break;
 
       case "times":
-        resultNum = oldNum * theNum;
+        this.resultNum = this.#oldNum * this.#theNum;
         break;
 
       case "divided by":
-        resultNum = oldNum / theNum;
+        this.resultNum = this.#oldNum / this.#theNum;
         break;
 
-        // If equal is pressed without an operator, keep number and continue
+        // If equal is pressed without an this.operator, keep number and continue
       default:
-        resultNum = theNum;
+        this.resultNum = this.#theNum;
     }
 
     // If NaN or Infinity returned
-    if (!isFinite(resultNum)) {
-      if (isNaN(resultNum)) { // If result is not a number; set off by, eg, double-clicking operators
-        resultNum = "You broke it!";
+    if (!isFinite(this.resultNum)) {
+      if (isNaN(this.resultNum)) { // If result is not a number; set off by, eg, double-clicking this.operators
+        this.resultNum = "You broke it!";
       } else { // If result is infinity, set off by dividing by zero
-        resultNum = "Look at what you've done";
-        el('#calculator').classList.add("broken"); // Break calculator
-        el('#reset').classList.add("show"); // And show reset button
+        this.resultNum = "Look at what you've done";
+        Calculator.el('#calculator').classList.add("broken"); // Break calculator
+        Calculator.el('#reset').classList.add("show"); // And show reset button
       }
     }
 
     // Display result, finally!
-    viewer.innerHTML = resultNum;
-    equals.setAttribute("data-result", resultNum);
+    this.viewer.innerHTML = this.resultNum;
+    this.equals.setAttribute("data-result", this.resultNum);
 
-    // Now reset oldNum & keep result
-    oldNum = 0;
-    theNum = resultNum;
+    // Now reset this.#oldNum & keep result
+    this.#oldNum = 0;
+    this.#theNum = this.resultNum;
 
   }
-
-  // When: Clear button is pressed. Clear everything
-  clearAll = function () {
-    this.oldNum = "";
-    this.theNum = "";
-    this.viewer.innerHTML = "0";
-    this.equals.setAttribute("data-result", resultNum);
-  }
-
-  /* The click events */
-
-  // Add click event to numbers
-
-  
-  
 }
 
-let a = new Calc();
+
+const myCalc = new Calculator();
